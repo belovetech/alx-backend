@@ -39,7 +39,7 @@ class Server:
         assert type(page) == int and page > 0
         assert type(page_size) == int and page_size > 0
 
-        paginate_range =  index_range(page, page_size)
+        paginate_range = index_range(page, page_size)
         start, end = paginate_range[0], paginate_range[1]
         dataset = self.dataset()
 
@@ -48,4 +48,4 @@ class Server:
         except IndexError:
             data = []
 
-        return data           
+        return data
