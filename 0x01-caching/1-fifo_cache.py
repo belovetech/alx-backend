@@ -16,7 +16,7 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """Assign key and item to the cache system
         """
-        if len(self.cache_data) >= self.MAX_ITEMS and key not in self.queue:
+        if len(self.cache_data) == self.MAX_ITEMS and key not in self.queue:
             discard = self.queue.pop(0)
             del self.cache_data[discard]
             print("DISCARD: {}".format(discard))
@@ -29,5 +29,4 @@ class FIFOCache(BaseCaching):
         """
         if not key or key in self.cache_data.keys():
             return None
-
         return self.cache_data.get(key)
