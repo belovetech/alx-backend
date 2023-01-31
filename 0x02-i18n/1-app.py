@@ -6,13 +6,11 @@ from flask_babel import Babel
 
 
 class Config:
-    """configure available languages in our app
+    """Reoresentation of Babel configuration
     """
-    def __init__(self) -> None:
-        """Initialize config class with available language"""
-        self.LANGUAGES = ['en', 'fr']
-        self.BABEL_DEFAULT_LOCALE = 'en'
-        self.BABEL_DEFAULT_TIMEZONE = 'UTC'
+    LANGUAGES = ['en', 'fr']
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app = Flask(__name__)
