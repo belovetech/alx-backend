@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Basic Babel setup
+"""Get locale from request
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
@@ -19,12 +19,19 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
+@babel.localeselector
+def get_locale():
+    """Get locale from request
+    """
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
 @app.route('/')
 def say_hello():
-    """Say hello world
+    """Route handler for 2-index.html
     """
-    return render_template('1-index.html')
+    return render_template('2-index.html')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host="0.0.0.0", port="3000")
