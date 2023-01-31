@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Parametrize templates
+"""Force locale with URL parameter
 """
 from flask import Flask, render_template, request
 from flask_babel import Babel
@@ -27,8 +27,8 @@ def get_locale():
 
     dic = {}
     for query in queries:
-        query = query.split("=")
-        dic[query[0]] = query[1]
+        query_di = query.split("=")
+        dic[query_di[0]] = query_di[1]
 
     if 'locale' in dic:
         if dic['locale'] in Config['LANGUAGES']:
