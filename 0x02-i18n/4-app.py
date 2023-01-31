@@ -24,15 +24,14 @@ def get_locale():
     """Retrieve request locale
     """
     queries = request.query_string.decode('utf-8').split("&")
+    query_obj = dict(map(
+        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
+        queries,
+    ))
 
-    dic = {}
-    for query in queries:
-        query_di = query.split("=")
-        dic[query_di[0]] = query_di[1]
-
-    if 'locale' in dic:
-        if dic['locale'] in Config['LANGUAGES']:
-            return dic['locale']
+    if 'locale' in query_obj:
+        if query_obj['locale'] in Config['LANGUAGES']:
+            return query_obj['locale']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
