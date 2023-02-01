@@ -23,19 +23,10 @@ babel = Babel(app)
 def get_locale():
     """Retrieve request locale
     """
-    queries = request.query_string.decode('utf-8').split("&")
+    locale = request.args.get('locale', '')
 
-    query_obj = {}
-    for query in queries:
-        query = query.split("=")
-        if len(query) == 2:
-            query_obj[query[0]] = query[1]
-        else:
-            query_obj[query[0]] = ''
-
-    if 'locale' in query_obj:
-        if query_obj['locale'] in app.config['LANGUAGES']:
-            return query_obj['locale']
+    if locale and locale in app.config['LANGUAGES']:
+        return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
