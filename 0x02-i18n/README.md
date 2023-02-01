@@ -1,6 +1,16 @@
-# i18n
+# i18n -> Internalization
 
-Pybabel Commands:
+Internationalization (sometimes shortened to "I18N , meaning "I - eighteen letters -N") is the process of planning and implementing products and services so that they can easily be adapted to specific local languages and cultures, a process called localization .
+
+## flask-babel
+
+flask-babel is a Flask extension that makes working with translations very easy
+
+## pytz
+
+This library allows accurate and cross platform timezone calculations.
+
+#### Pybabel Commands:
 
 ```babel
 Innitialize translations
