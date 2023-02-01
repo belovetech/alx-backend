@@ -24,16 +24,21 @@ def get_locale():
     """Retrieve request locale
     """
     queries = request.query_string.decode('utf-8').split("&")
-    query_obj = dict(map(
-        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
-        queries,
-    ))
+
+    query_obj = {}
+    for query in queries:
+        query = query.split("=")
+        if len(query) == 2:
+            query_obj[query[0]] = query[1]
+        else:
+            query_obj[query[0]] = ''
 
     if 'locale' in query_obj:
-        if query_obj['locale'] in Config['LANGUAGES']:
+        if query_obj['locale'] in app.config['LANGUAGES']:
             return query_obj['locale']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+babel.init_app(app, locale_selector=get_locale)
 
 @app.route('/')
 def say_hello():
@@ -43,4 +48,4 @@ def say_hello():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="3030")
+    app.run(host="0.0.0.0", port="5000")
