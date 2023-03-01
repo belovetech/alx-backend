@@ -11,10 +11,10 @@ job
   .on('enqueue', () => {
     console.log(`Notification job created: ${job.id}`);
   })
-  .on('complete', (err) => {
+  .on('complete', () => {
     console.log('NNotification job completed');
   })
-  .on('failed', (err) => {
+  .on('failed', () => {
     console.log('Notification job failed');
   });
 
